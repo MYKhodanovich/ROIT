@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/bigwarp_fiji-7.0.6-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/bigdataviewer_fiji-6.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/n5-viewer_fiji-4.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/3D_Viewer-4.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Auto_Threshold-1.17.2.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/bigDataProcessor1_-0.7.4.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/bio-formats_plugins-6.9.1-20220403.010915-10.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Bug_Submitter-2.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Fiji_Developer-2.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Fiji_Package_Maker-2.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Fiji_Plugins-3.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/H5J_Loader_Plugin-1.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/IJ_Robot-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/ij_shape_filter-1.4.2.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/ij_shape_smoothing-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Image_Expression_Parser-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/IO_-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/M_I_P-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/NeuronJ_.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/register_virtual_stack_slices-3.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/registration_3d-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Samples_-2.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Thread_Killer-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/TransformJ_.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Biovoxxel_Plugins-2.5.6.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/FlowJ_-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/FS_Align_TrakEM2-2.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/HDF5_Vibez-1.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Image_5D-2.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Interactive_3D_Surface_Plot-3.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/LSM_Toolbox-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/MorphoLibJ_-1.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/mpicbg_-1.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/MTrack2_-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/MTrackJ_.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/RATS_-2.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Skeletonize3D_-2.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/SPIM_Opener-2.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/SPIM_Registration-5.0.22.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/SplineDeformationGenerator_-2.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/distrib/fiji-win64/Fiji.app/plugins/Time_Lapse-2.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/!publications/2021/image processing/fiji-win64/Fiji.app/plugins/bigdataviewer_fiji-6.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/!publications/2021/image processing/fiji-win64/Fiji.app/plugins/bigwarp_fiji-7.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/!publications/2021/image processing/fiji-win64/Fiji.app/jars/bigdataviewer-core-10.2.2.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

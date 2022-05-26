@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Created-By: Maven Jar Plugin 3.2.0
+Build-Jdk-Spec: 17
+Class-Path: ij-1.53f.jar
+Specification-Title: ROI transformation
+Specification-Version: 1.1
+Specification-Vendor: tsu
+Implementation-Title: ROI transformation
+Implementation-Version: 1.1
+Implementation-Vendor: tsu
+Main-Class: com.mycompany.imagej.Process_Pixels
+Package: com.mycompany.imagej
+Automatic-Module-Name: com.mycompany.imagej
+Implementation-Build: UNKNOWN
+Implementation-Date: 2022-05-14T00:25:58+0000
+Premain-Class: 
+
