@@ -1,9 +1,25 @@
-/*
- * To the extent possible under law, the ImageJ developers have waived
- * all copyright and related or neighboring rights to this tutorial code.
- *
- * See the CC0 1.0 Universal license for details:
- *     http://creativecommons.org/publicdomain/zero/1.0/
+
+ /*
+ * #%L
+ * ROI_T plugin for Fiji.
+ * %%
+ * Copyright (C) 2022 Marina Khodanovich.
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 2 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/gpl-2.0.html>.
+ * #L%
+  * @author Marina Khodanovich
  */
 
 package ru.tsu.neuro;
@@ -37,30 +53,8 @@ import java.util.*;
 import ij.ImageListener;
 import bigwarp.*;
 
-/**
- /*-
- * #%L
- * ROI_T plugin for Fiji.
- * %%
- * Copyright (C) 2022 Marina Khodanovich.
- * %%
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 2 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public
- * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/gpl-2.0.html>.
- * #L%
  
- * @author Marina Khodanovich
- */
+
 public class ROI_T implements PlugInFilter, ImageListener {
 	protected ImagePlus image;
 	public ImagePlus sourceImage;
@@ -107,7 +101,7 @@ public class ROI_T implements PlugInFilter, ImageListener {
 			return;
  		ArrayList <Roi> rois = new ArrayList <Roi>();				
  		
- 		images = new ArrayList <ImagePlus>();						//0 - sourceImage, 1 - targetImage, 2 - modifiedSourceImage, 
+ 		images = new ArrayList <ImagePlus>();			//0 - sourceImage, 1 - targetImage, 2 - modifiedSourceImage, 
  		if (initData(rm, rt, rois, images)==false)
 			return;
 		if (roiToOverlay(rois, images.get(0))==false) {
@@ -383,7 +377,7 @@ public class ROI_T implements PlugInFilter, ImageListener {
 		dScale=dTarget/dSource;
 		return dScale;
 	}
-/////////////////////////////////////////////////////////////
+       ////////////////////////////////////////////////////////////////
 	boolean checkRoiSize(RoiManager rm, Roi roi, ImagePlus sourceImage) {
 		Rectangle rectS=roi.getBounds();
 		if (((int)rectS.getWidth()>sourceImage.getWidth())||((int)rectS.getHeight()>sourceImage.getHeight())) {
@@ -533,27 +527,5 @@ public class ROI_T implements PlugInFilter, ImageListener {
 			);
 	}
 
-	/*
-	public static void main(String[] args) throws Exception {
-		// set the plugins.dir property to make the plugin appear in the Plugins menu
-		// see: https://stackoverflow.com/a/7060464/1207769
-		Class<?> clazz = ROI_T.class;
-		java.net.URL url = clazz.getProtectionDomain().getCodeSource().getLocation();
-		java.io.File file = new java.io.File(url.toURI());
-		System.setProperty("plugins.dir", file.getAbsolutePath());
-
-		// start ImageJ
-		new ImageJ();
-		IJ.log(file.getAbsolutePath());
-
-		// open the Clown sample
-		ImagePlus image1 = IJ.openImage("C:\\1\\T2 Substack (13).tif");
-		image1.show();
-		ImagePlus image2 = IJ.openImage("C:\\1\\22 red invert.tif");
-		image2.show();
-
-		// run the plugin
-		IJ.runPlugIn(clazz.getName(), "ROIT");
-	}
-	*/
+	
 }
