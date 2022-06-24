@@ -1,5 +1,36 @@
+/*
+ * To the extent possible under law, the ImageJ developers have waived
+ * all copyright and related or neighboring rights to this tutorial code.
+ *
+ * See the CC0 1.0 Universal license for details:
+ *     http://creativecommons.org/publicdomain/zero/1.0/
+ */
 
- /*
+package ru.tsu.neuro;
+
+import ij.IJ;
+import ij.ImagePlus;
+import ij.gui.GenericDialog;
+import ij.plugin.filter.PlugInFilter;
+import ij.process.ImageProcessor;
+import ij.plugin.RGBStackMerge;
+import ij.plugin.RGBStackConverter;
+import ij.plugin.ChannelSplitter;
+import ij.plugin.filter.ThresholdToSelection;
+import ij.process.ByteProcessor;
+import ij.plugin.frame.RoiManager;
+import ij.gui.Roi;
+import ij.gui.Overlay;
+import ij.gui.YesNoCancelDialog;
+import ij.measure.ResultsTable;
+import java.awt.*;
+import java.awt.List;
+import java.util.*;
+import ij.ImageListener;
+import bigwarp.*;
+
+/**
+ /*-
  * #%L
  * ROI_T plugin for Fiji.
  * %%
@@ -19,42 +50,9 @@
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-2.0.html>.
  * #L%
-  * @author Marina Khodanovich
- */
-
-package ru.tsu.neuro;
-
-import ij.IJ;
-
-import ij.ImageJ;
-import ij.ImagePlus;
-import ij.gui.GenericDialog;
-import ij.plugin.filter.PlugInFilter;
-import ij.process.ImageProcessor;
-
-
-import ij.plugin.RGBStackMerge;
-import ij.plugin.RGBStackConverter;
-import ij.plugin.ChannelSplitter;
-import ij.plugin.filter.ThresholdToSelection;
-import ij.process.ByteProcessor;
-import ij.WindowManager;
-import ij.plugin.filter.PlugInFilter;
-import ij.plugin.frame.RoiManager;
-import ij.gui.Roi;
-import ij.gui.Overlay;
-import ij.gui.YesNoCancelDialog;
-import ij.gui.ImageWindow;
-import ij.measure.Calibration;
-import ij.measure.ResultsTable;
-import java.awt.*;
-import java.awt.List;
-import java.util.*;
-import ij.ImageListener;
-import bigwarp.*;
-
  
-
+ * @author Marina Khodanovich
+ */
 public class ROI_T implements PlugInFilter, ImageListener {
 	protected ImagePlus image;
 	public ImagePlus sourceImage;
@@ -64,7 +62,6 @@ public class ROI_T implements PlugInFilter, ImageListener {
  	private java.lang.String[] titles;
  	private ArrayList <ImagePlus> images;
 	private int sourceRoiCount;
-	private int[] roiInexesForMeasurements;
 	private Double dScale = 1.0;
 	private BigWarp bw;
 	private boolean bwComplete = false;
@@ -101,7 +98,7 @@ public class ROI_T implements PlugInFilter, ImageListener {
 			return;
  		ArrayList <Roi> rois = new ArrayList <Roi>();				
  		
- 		images = new ArrayList <ImagePlus>();			//0 - sourceImage, 1 - targetImage, 2 - modifiedSourceImage, 
+ 		images = new ArrayList <ImagePlus>();						//0 - sourceImage, 1 - targetImage, 2 - modifiedSourceImage, 
  		if (initData(rm, rt, rois, images)==false)
 			return;
 		if (roiToOverlay(rois, images.get(0))==false) {
@@ -257,7 +254,7 @@ public class ROI_T implements PlugInFilter, ImageListener {
 		GenericDialog gd = new GenericDialog("ROI transformation");
 		java.awt.Font font=gd.getFont();
 		double fontSize=font.getSize()*1.2;
-		java.awt.Font font_new = new Font(font.getFontName(), font.BOLD, (int)fontSize);
+		java.awt.Font font_new = new Font(font.getFontName(), java.awt.Font.BOLD, (int)fontSize);
  		gd.addMessage("Images:", font_new, Color.black);
  		gd.addImageChoice("Source image"+str1, titles[0]);
  		gd.addImageChoice("Target image"+str2, titles[1]);
@@ -377,7 +374,7 @@ public class ROI_T implements PlugInFilter, ImageListener {
 		dScale=dTarget/dSource;
 		return dScale;
 	}
-       ////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
 	boolean checkRoiSize(RoiManager rm, Roi roi, ImagePlus sourceImage) {
 		Rectangle rectS=roi.getBounds();
 		if (((int)rectS.getWidth()>sourceImage.getWidth())||((int)rectS.getHeight()>sourceImage.getHeight())) {
@@ -419,7 +416,7 @@ public class ROI_T implements PlugInFilter, ImageListener {
 		}
 		int size = overlay.size();
 		for (int i=0; i<size; i++){
-			overlay.remove(i);
+			myImage.getOverlay().remove(i);
 			size = size-1;
 		}
 		return true;  
@@ -451,11 +448,12 @@ public class ROI_T implements PlugInFilter, ImageListener {
 			}
 			ImagePlus [] channelImages = new ImagePlus[rois.size()+1];
 			channelImages[0] = images.get(imageIndex).duplicate();;
-			ImagePlus img = images.get(imageIndex);
 			ip = channelImages[0].getProcessor();
 	//////////////////decreasing bit depth to 8-bit
 			if (ip.getBitDepth()>8) {
 				ip.convertToByte(true);
+				ImageProcessor ip1 = images.get(imageIndex).getProcessor().convertToByte(true);;
+				channelImages[0].setProcessor(ip1);
 			}
 	//////////////////Getting masks
 			ImageProcessor mask = new ByteProcessor(ip,true);
@@ -475,11 +473,8 @@ public class ROI_T implements PlugInFilter, ImageListener {
 			ImagePlus tmpImage = channelImages[0];
 			channelImages[0] = channelImages[1];
 			channelImages[1] = tmpImage; //main image index is 1, green; ROIs - 0 - red, 2- blue
-			RGBStackMerge merge;
-			merge = new ij.plugin.RGBStackMerge();
-			ImagePlus composite = merge.mergeChannels(channelImages, true); 
-			RGBStackConverter converter = new ij.plugin.RGBStackConverter();
-			converter.convertToRGB(composite);
+			ImagePlus composite = RGBStackMerge.mergeChannels(channelImages, true); 
+			RGBStackConverter.convertToRGB(composite);
 			images.set(imageIndex,composite);
 			IJ.log("Composite image: "+images.get(imageIndex).getTitle());
 		return true; 
@@ -490,9 +485,7 @@ public class ROI_T implements PlugInFilter, ImageListener {
 			IJ.showMessage("ROIT","No ROIs to create overlay!");
 			return false;
 		}
-		
-		ChannelSplitter spl = new ij.plugin.ChannelSplitter();
-		ImagePlus [] channels =  spl.split(images.get(imageIndex));
+		ImagePlus [] channels =  ChannelSplitter.split(images.get(imageIndex));
 		if (channels.length<2){
 			IJ.showMessage("ROIT","Wrong composite!"+String.valueOf(channels.length)+" channels");
 			return false;
@@ -503,15 +496,17 @@ public class ROI_T implements PlugInFilter, ImageListener {
 		int roiIndex=0;
 		String roiName = "Undefined";
 		ThresholdToSelection thr = new ij.plugin.filter.ThresholdToSelection();
-		for (int i=0; (i<channels.length)&&(i!=baseIndex); i++){
-			ip = channels[i].getProcessor();
-			ip.setThreshold(1,255, ip.NO_LUT_UPDATE);	
-			roi = thr.convert(ip) ;
-			channels[baseIndex].setRoi(roi, false);
-			roiName = rois.get(roiIndex).getName();
-			roi.setName(roiName);
-			rois.set(roiIndex, roi);
-			roiIndex=roiIndex+1;
+		for (int i=0; (i<channels.length); i++){
+			if (i!=baseIndex) {
+				ip = channels[i].getProcessor();
+				ip.setThreshold(1,255, ImageProcessor.NO_LUT_UPDATE);	
+				roi = thr.convert(ip) ;
+				channels[baseIndex].setRoi(roi, false);
+				roiName = rois.get(roiIndex).getName();
+				roi.setName(roiName);
+				rois.set(roiIndex, roi);
+				roiIndex=roiIndex+1;
+			}
 		}
         if (roiToOverlay(rois, channels[baseIndex])==false){
         	return false;
@@ -523,9 +518,8 @@ public class ROI_T implements PlugInFilter, ImageListener {
 
 	public void showAbout() {
 		IJ.showMessage("ROIT",
-				"This plugin is designed for MRI-to-histology or histology-to-MRI transformation of region of interest. "
+				"This plugin is developed for MRI-to-histology or histology-to-MRI transformation of regions of interest. "
 			);
 	}
 
-	
 }
